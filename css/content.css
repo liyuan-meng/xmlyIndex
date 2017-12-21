@@ -1,0 +1,107 @@
+.content .top-menu {
+    padding-top: 22px;
+    overflow: hidden;
+}
+.content .top-menu img {
+    float: left;
+}
+.content .top-menu ul {
+    float: right;
+}
+.content .top-menu ul li {
+    float: left;
+    font-size: 12px;
+    color: #3586BC;
+    padding: 0 5px;
+    margin-left: 10px;
+    line-height: 20px;
+    border-radius: 2px;
+}
+.content .top-menu .active {
+    background-color: #ff6800;
+    color: #fff;
+}
+.content .middle {
+    padding-left: 130px;
+    margin-top:7px;
+}
+.content .middle a {
+    font-size: 14px;
+    color: #3586BC;
+}
+.content .middle a:hover {
+    text-decoration: underline;
+}
+/*左侧菜单栏begin*/
+.content .bottom {
+    margin-top: 10px;
+}
+.content .bottom .left-menu {
+    float: left;
+}
+.bottom .left-menu ul {
+    box-shadow: 4px 2px 5px 0 #ddd;
+    border-right: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+.bottom .left-menu li {
+    width: 118px;
+    line-height: 40px;
+    font-size: 14px;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    color:#999999 ;
+    text-align: center;
+}
+.bottom .left-menu li:nth-child(2n+1) {
+    background-color: #f7f7f7;
+}
+.bottom .left-menu li:nth-child(2n) {
+    background-color: #fff;
+}
+.bottom .left-menu li.active  {
+    background-color: #ff6800;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.bottom .left-menu li:hover {
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    background: #ff6800 url("../images/arrowRight.png") no-repeat;
+    background-position: 100px 14px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
