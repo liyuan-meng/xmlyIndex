@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            display: block;
+            text-decoration: none;
+            width: 100px;
+        }
+        a:link {
+            color: black;
+        }
+
+        a:visited, a:hover {
+            color: grey;
+        }
+
+    </style>
+</head>
+<body>
+<a href="#">click me</a>
+</body>
+<script>
+    document.querySelector("a").addEventListener("click",function (ev) {
+        console.log(ev);
+    })
+    var a = {name:"zhangsan"}
+    console.log(a.age);
+</script>
+</html>

@@ -17,7 +17,8 @@
     line-height: 20px;
     border-radius: 2px;
 }
-.content .top-menu .active {
+.content .top-menu .active,
+.content .top-menu li:hover {
     background-color: #ff6800;
     color: #fff;
 }
@@ -39,12 +40,13 @@
 .content .bottom .left-menu {
     float: left;
 }
-.bottom .left-menu ul {
+.bottom .left-menu .menu {
     box-shadow: 4px 2px 5px 0 #ddd;
     border-right: 1px solid #eee;
     border-top: 1px solid #eee;
 }
-.bottom .left-menu li {
+.bottom .menu li {
+    position: relative;
     width: 118px;
     line-height: 40px;
     font-size: 14px;
@@ -53,24 +55,97 @@
     color:#999999 ;
     text-align: center;
 }
-.bottom .left-menu li:nth-child(2n+1) {
+.bottom .menu li:nth-child(2n+1) {
     background-color: #f7f7f7;
 }
-.bottom .left-menu li:nth-child(2n) {
+.bottom .menu li:nth-child(2n) {
     background-color: #fff;
 }
-.bottom .left-menu li.active  {
+.bottom .menu .active {
     background-color: #ff6800;
     color: #fff;
     cursor: pointer;
     font-weight: bold;
 }
-.bottom .left-menu li:hover {
+.bottom .menu li[class~="hot"]:hover p{
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #ff6800;
+}
+.bottom .menu li[class~="not-hot"]:hover p{
     color: #fff;
     cursor: pointer;
     font-weight: bold;
     background: #ff6800 url("../images/arrowRight.png") no-repeat;
     background-position: 100px 14px ;
+}
+.bottom .menu .child-menu {
+    display: none;
+    position: absolute;
+    width: 182px;
+    padding: 15px 8px 8px 15px;
+    background: #fff;
+    border: 1px solid #EEEEEE;
+    box-shadow: 5px 5px 5px #ccc, 3px -3px 5px #ccc;
+}
+.bottom .menu .child-menu:nth-child(2) {
+    /*display: block;*/
+}
+.bottom .menu li[class~="voice-book"]:hover .child-menu {
+    display: block;
+    left: 120px;
+    top: -40px;
+}
+.bottom .menu li[class~="child"]:hover .child-menu {
+    display: block;
+    left: 120px;
+    top: -80px;
+}
+.bottom .menu li[class~="not-child"]:hover .child-menu {
+    display: block;
+    left: 120px;
+    top: 0px;
+}
+.bottom .menu .child-menu a{
+    display: block;
+    float: left;
+    height: 27px;
+    padding-left: 15px;
+    margin-right: 7px;
+    margin-bottom: 7px;
+    line-height: 27px;
+}
+.bottom .menu .child-menu span{
+    padding-right: 8px;
+    display: inline-block;
+}
+.bottom .menu .child-menu a.hover {
+    background: url("../images/content.png") repeat;
+    background-position: 0 -150px;
+    background-origin: padding-box;
+}
+.bottom .child-menu a.link {
+    background: url("../images/content.png") repeat;
+    background-position: 0 -118px;
+    background-origin: padding-box;
+}
+.bottom .child-menu a.link span{
+    background: url("../images/content.png") repeat;
+    background-position: right -118px;
+    background-origin: padding-box;
+    color: #333;
+}
+.bottom .child-menu a.visited {
+    background: url("../images/content.png") repeat;
+    background-position: 0 -1052px;
+    background-origin: padding-box;
+}
+.bottom .child-menu a.visited span {
+    background: url("../images/content.png") repeat;
+    background-position: right -1052px;
+    background-origin: padding-box;
+    color: #fff;
 }
 
 

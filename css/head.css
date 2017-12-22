@@ -1,44 +1,40 @@
-.header{
-    background-color: #ff4611;
+.header .header-top{
     height: 60px;
+    background-color: #ff4611;
 }
-.header .logo,
-.header .catalog li,
-.header .search{
-    line-height: 60px;
+.header .header-top:after {
+    display: block;
+    content: "";
+    clear: both;
 }
-.header .logo,
-.header .catalog,
-.header .voice-platform,
-.header .search,
-.header .upload {
+.header-top .logo {
     float: left;
-}
-.header .main-container {
-    overflow: hidden;
-}
-.header .logo {
     font-size: 28px;
     color: #fffdfc;
     width: 180px;
+    line-height: 60px;
 }
 /*主导航菜单begin*/
-.header .catalog li {
+.header-top .catalog li {
     float: left;
     font-size: 14px;
     color: #fff;
     width: 96px;
     text-align: center;
+    line-height: 60px;
 }
-.header .catalog .active,
-.header .catalog li:hover {
+.header-top .catalog .active,
+.header-top .catalog li:hover,
+.header-top .voice-platform .active,
+.header-top .voice-platform li:hover {
     background-color: #ff5929;
     cursor: pointer;
 }
-.header .voice-platform {
+.header-top .voice-platform {
+    float: left;
     margin-left: 40px;
 }
-.header .voice-platform li {
+.header-top .voice-platform li {
     float: left;
     color: #fff;
     font-size: 12px;
@@ -46,46 +42,48 @@
     padding-top: 10px;
     text-align: center;
 }
-.header .voice-platform li:before {
+.header-top .voice-platform li:before {
     display: block;
     content: "";
     height: 25px;
     padding-left: 25px;
     background: url("../images/header.png") no-repeat;
 }
-.header .voice-platform a:first-child li:before {
+.header-top .voice-platform a:first-child li:before {
     background-position: 25px 0;
 }
-.header .voice-platform a:last-child li:before {
+.header-top .voice-platform a:last-child li:before {
     background-position: 25px -25px;
 }
 /*主导航菜单end*/
 
 /*搜索begin*/
-.header .search {
+.header-top .search {
+    float: left;
     position: relative;
+    line-height: 60px;
 }
-.header .search input,
-.header .search ul {
+.header-top .search input,
+.header-top .search ul {
     border: 1px solid #ccc;
     background-color: #fff;
     font-size: 12px;
 }
-.header .search input {
+.header-top .search input {
     margin-left: 10px;
     padding: 1px 1px 1px 12px;
     border-radius: 4px;
     height: 20px;
     width: 180px;
 }
-.header .search>img {
+.header-top .search>img {
     position: absolute;
     top: 24px;
     right: 7px;
     width: 16px;
     height: 16px;
 }
-.header .search ul {
+.header-top .search ul {
     display: none;
     position: absolute;
     top: 42px;
@@ -94,29 +92,30 @@
     border-radius: 0 0 4px 4px;
     border-top-style: none;
 }
-.header .search ul li {
+.header-top .search ul li {
     line-height: 28px;
     height: 28px;
     width: 193px;
 }
-.header .search ul img {
+.header-top .search ul img {
     float: left;
     width: 25px;
     height: 25px;
 }
-.header .search ul p {
+.header-top .search ul p {
     color: #555;
     margin-left: 28px;
 }
-.header .search ul .active,
-.header .search ul li:hover {
+.header-top .search ul .active,
+.header-top .search ul li:hover {
     background-color: #fff7df;
     cursor: pointer;
 }
 /*搜索end*/
 
 /*上传begin*/
-.header .upload {
+.header-top .upload {
+    float: left;
     position: relative;
     font-size: 12px;
     margin-left: 10px;
@@ -140,8 +139,15 @@
     background-position: 8px -245px;
     cursor: pointer;
 }
-.upload .upload-button:hover +.upload-angle+.upload-select,
-.upload .upload-angle:hover +.upload-select{
+.upload .parent {
+    padding-bottom: 15px;
+}
+.upload .parent:after {
+    content:"";
+    display: block;
+    clear: both;
+}
+.upload .parent:hover .upload-select{
     display: block;
 }
 .upload .upload-button p {
@@ -249,7 +255,7 @@
 .second-menu .login:hover li {
     color: #333;
 }
-
+/*二级导航菜单end*/
 
 
 
