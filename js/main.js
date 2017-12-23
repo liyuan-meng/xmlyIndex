@@ -391,7 +391,7 @@
             var liClass = "",pClass="";
             if(item.type !== "热门") {
                 item.include.forEach(function (item1) {
-                    str2 += '<a href="#" class="link"><span>'+item1+'</span></a>';
+                    str2 += '<a href="#" class="not-selected link"><span>'+item1+'</span></a>';
                 })
             }
             str2 = '<div class="child-menu">' + str2 + '</div>';
@@ -411,6 +411,26 @@
     }
     //初始化绑定事件
     function initEvents() {
+        var array = [
+            {//点击右上方横向选择按钮
+                parentElement: "#easy-select",
+                childName: "li",
+                className: "active",
+                eventName: "click"
+            },
+            {//点击左上方横向选择按钮
+                parentElement: "#left-top-menu",
+                childName: "li",
+                className: "active",
+                eventName: "click"
+            },
+            {//点击导航栏
+                parentElement: "#catalog",
+                childName: "li",
+                className: "active",
+                eventName: "click"
+            }
+        ];
         function addEventListeners (arr) {
             arr.forEach(function(item) {
                 document.querySelector(item.parentElement).addEventListener("click", function(ev) {
@@ -419,57 +439,127 @@
                     });
                     if(ev.target.localName === item.childName) {
                         ev.target.classList.add(item.className);
-                        item.callback({value:ev.target.innerText});
                     }
                 })
             });
         }
-        var array = [
-            {//点击左侧菜单，颜色改变,并且上方面包屑的内容更改成菜单内容
-                parentElement: "#menu",
-                childName: "p",
-                className: "active",
-                eventName: "click",
-                callback: function(param) {document.querySelector("#dir a").textContent = param.value}
-            },
-            {//点击右上方横向选择按钮
-                parentElement: "#easy-select",
-                childName: "li",
-                className: "active",
-                eventName: "click",
-                callback: function(param) {}
-            },
-            {
-                parentElement: "#left-top-menu",
-                childName: "li",
-                className: "active",
-                eventName: "click",
-                callback: function(param) {}
-            },
-            {
-                parentElement: "#catalog",
-                childName: "li",
-                className: "active",
-                eventName: "click",
-                callback: function(param) {}
-            }
-        ];
-        addEventListeners(array);
-
         //点击搜索框，显示下拉菜单
-        document.querySelector("#search").addEventListener("mouseover", function(ev) {
-            this.querySelector("ul").style.display = "block";
-        });
-        document.querySelector("#search").addEventListener("mouseout", function(ev) {
-            this.querySelector("ul").style.display = "none";
-        });
-        //鼠标悬浮
+        function controlSearch () {
+            document.querySelector("#search").addEventListener("mouseover", function(ev) {
+                this.querySelector("ul").style.display = "block";
+            });
+            document.querySelector("#search").addEventListener("mouseout", function(ev) {
+                this.querySelector("ul").style.display = "none";
+            });
+        }
+        //左侧筛选菜单控制逻辑
+        function controlLeftMenu () {
+            //清除小标签的样式
+            function resetSmallTag () {
+                document.querySelectorAll("#menu a").forEach(function (value) {
+                    value.classList.remove("visited");
+                    value.classList.add("not-selected")
+                });
+            }
+            //改变面包屑的内容
+            function addDir (aText, spanText) {
+                document.querySelector("#dir a").textContent = aText;
+                document.querySelector("#dir span").innerHTML = spanText;
+            }
+            //点击左侧菜单
+            document.querySelector("#menu").addEventListener("click", function (ev) {
+                //将父元素menu下的所有p元素移除类active
+                this.querySelectorAll("p").forEach(function (value) {
+                    value.classList.remove("active");
+                });
+                //点击的元素是p元素则
+                if(ev.target.localName === "p") {
+                    ev.target.classList.add("active");
+                    addDir(ev.target.innerText, "");
+                    resetSmallTag();
+                }
+                //点击的元素是p元素的兄弟元素
+                if(ev.target.localName === "div") {
+                    ev.target.parentNode.querySelector("p").classList.add("active");
+                    addDir(ev.target.parentNode.querySelector("p").innerText, "");
+                    resetSmallTag();
+                }
+                //如果点击的元素是p元素的兄弟元素的子元素span：
+                if(ev.target.localName === "span") {
+                    var target = ev.target.parentNode.parentNode.parentNode;
+                    target.querySelector("p").classList.add("active");
+                    resetSmallTag();
+                    ev.target.parentNode.classList.add("visited");
+                    ev.target.parentNode.classList.remove("not-selected");
+                    addDir(target.querySelector("p").innerText, ">>&nbsp;"+ev.target.innerText);
+                }
+            });
+            //点击面包屑
+            document.querySelector("#dir a").addEventListener("click", function (ev) {
+                document.querySelector("#dir span").innerHTML = "";
+                resetSmallTag();
+            })
+        }
+
+        controlSearch ();
+        addEventListeners(array);
+        controlLeftMenu();
     }
     //初始化右侧内容区
     function getContent () {
-        /**
-         * TODO
-         */
+        var str = "";
+        bookData.forEach(function (item) {
+            str += '<div class="book-item">' +
+                        '<div class="album-item">' +
+                            '<div class="album">' +
+                                '<img src="'+item.imgUrl+'" alt="">' +
+                                '<div class="play-count">'+item.playCount+'</div>' +
+                            '</div>' +
+                            '<div class="album-decorate">' +
+                                '<div class="border-one"></div>' +
+                                '<div class="border-two"></div>' +
+                                '<div class="border-three"></div>' +
+                                '<div class="mask"></div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<a href="#" class="title">'+item.name+'</a>' +
+                        '<div class="intro">' +
+                            '<p class="play-btn"></p>' +
+                            '<a href="#">'+item.intro+'</a>' +
+                        '</div>' +
+                    '</div>'
+        });
+        document.querySelector("#main-content").innerHTML = str;
+        //页码初始化
+        function showPage (totalPage) {
+            var str = '<li class="pre">上一页</li>';
+            for(var i = 0; i < totalPage; i++) {
+                if (i+1 === 1) {
+                    str += '<li class="page'+(i+1)+'page-num active">'+(i+1)+'</li>';
+                } else if (i+1 < 8) {
+                    str += '<li class="page'+(i+1)+'page-num">'+(i+1)+'</li>';
+                } else if (i+1 === 8) {
+                    str += '<li class="omit">......</li>';
+                } else if(i+1 > 8 && i+1 < totalPage-1) {
+                    str += "";
+                } else {
+                    str += '<li class="page'+(i+1)+'page-num">'+(i+1)+'</li>';
+                }
+            }
+            str += '<li class="next">下一页</li>';
+            document.querySelector("#page ul").innerHTML = str;
+        }
+        showPage(100);
+    }
+    //页码控制逻辑
+    function controlPage (pageNum) {
+        document.querySelector(".page"+pageNum).classList.add("active");
+        if (pageNum === 1) {
+            document.querySelector("#page .pre").style.display = "none";
+        }
+        if(pageNum < 8) {
+
+        }
     }
     function init () {
         getMenu ();

@@ -33,7 +33,11 @@
 .content .middle a:hover {
     text-decoration: underline;
 }
-/*左侧菜单栏begin*/
+.content .middle span {
+    color: #999;
+    font-size: 14px;
+}
+    /*左侧菜单栏begin*/
 .content .bottom {
     margin-top: 10px;
 }
@@ -88,6 +92,7 @@
     background: #fff;
     border: 1px solid #EEEEEE;
     box-shadow: 5px 5px 5px #ccc, 3px -3px 5px #ccc;
+    z-index: 10000;
 }
 .bottom .menu .child-menu:nth-child(2) {
     /*display: block;*/
@@ -105,7 +110,7 @@
 .bottom .menu li[class~="not-child"]:hover .child-menu {
     display: block;
     left: 120px;
-    top: 0px;
+    top: 0;
 }
 .bottom .menu .child-menu a{
     display: block;
@@ -120,7 +125,7 @@
     padding-right: 8px;
     display: inline-block;
 }
-.bottom .menu .child-menu a.hover {
+.bottom .menu .child-menu a[class~="not-selected"]:hover {
     background: url("../images/content.png") repeat;
     background-position: 0 -150px;
     background-origin: padding-box;
@@ -134,7 +139,7 @@
     background: url("../images/content.png") repeat;
     background-position: right -118px;
     background-origin: padding-box;
-    color: #333;
+    color: #666;
 }
 .bottom .child-menu a.visited {
     background: url("../images/content.png") repeat;
@@ -147,6 +152,177 @@
     background-origin: padding-box;
     color: #fff;
 }
+/*左侧菜单栏begin*/
+/*右侧主要内容区begin*/
+.main-content {
+    max-width: 780px;
+    margin-top: 1px;
+    float: left;
+}
+.main-content .book-item {
+    position: relative;
+    float: left;
+    width: 145px;
+    height: 214px;
+    padding: 23px;
+    border: 1px solid #eaeaea;
+}
+.main-content :after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.main-content .book-item:hover {
+    border-color: #ff6800;
+}
+.main-content .album {
+    position: relative;
+}
+.main-content .album:hover {
+    cursor: pointer;
+}
+.main-content .album-item:hover .mask {
+    display: block;
+}
+.main-content .album img {
+    width: 100%;
+    height: 100%;
+}
+.main-content .album .play-count {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-left: 22px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.65) url("../images/smallIcon.png") no-repeat;
+    background-position: 10px -522px;
+    background-origin: padding-box;
+    color: #fff;
+    line-height: 30px;
+    font-size: 12px;
+}
+.main-content .album .play-count:hover {
+    cursor: none;
+}
+.main-content .album-decorate .border-one,
+.main-content .album-decorate .border-two,
+.main-content .album-decorate .border-three {
+    position: absolute;
+    border: 0.5px solid #dedede;
+    width: 144px;
+    height: 150px;
+    z-index: -100;
+}
+.main-content .album-decorate .border-one {
+    top: 23px;
+    left: 23px;
+}
+.main-content .album-decorate .border-two {
+    top: 21px;
+    left: 25px;
+}
+.main-content .album-decorate .border-three {
+    top: 19px;
+    left: 27px;
+}
+.main-content .album-decorate .mask {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    width: 138px;
+    height: 112px;
+    background-color: rgba(255, 255, 255, 0.24);
+    z-index: 5000;
+}
+.main-content .album-decorate .mask:hover {
+    cursor: pointer;
+}
+.main-content a.title {
+    display: block;
+    color: #3586BC;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.main-content a:hover {
+    text-decoration: underline;
+}
+.main-content .intro a {
+    display: inline-block;
+    color: #3586BC;
+    font-size: 12px;
+    margin-left: 5px;
+    width: 108px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+}
+.main-content .intro .play-btn {
+    display: inline-block;
+    float: left;
+    content: "";
+    height: 18px;
+    width: 18px;
+    background: url("../images/button.png") no-repeat;
+    background-position: 0 -518px;
+    background-origin: border-box;
+}
+.main-content .intro .play-btn:hover {
+    cursor: pointer;
+    background: url("../images/button.png") no-repeat;
+    background-position: 0 -578px;
+    background-origin: border-box;
+}
+.bottom .page {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    color: #666;
+    font-size: 12px;
+    margin-right: -60px;
+}
+.bottom .page:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.bottom .page ul {
+    float: right;
+}
+.bottom .page li {
+    float: left;
+}
+.bottom .page li {
+    padding: 0 7px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin: 5px;
+    line-height: 21px;
+}
+.bottom .page li:hover {
+    cursor: pointer;
+    border-color: #ff6800;
+}
+.bottom .page li.active {
+    color: #fff;
+    background-color: #ff6800;
+    border-color: #ff6800;
+}
+.bottom .page .omit {
+    border: none;
+}
+.bottom .page .omit:hover {
+    border: none;
+}
+.bottom .page .pre {
+    display: none;
+}
+/*右侧主要内容区end*/
+
+
 
 
 
