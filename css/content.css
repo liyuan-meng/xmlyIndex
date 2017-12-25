@@ -1,3 +1,8 @@
+.content:after {
+    content: "";
+    display: block;
+    clear: both;
+}
 .content .top-menu {
     padding-top: 22px;
     overflow: hidden;
@@ -178,6 +183,7 @@
 }
 .main-content .album {
     position: relative;
+    z-index: 101;
 }
 .main-content .album:hover {
     cursor: pointer;
@@ -191,7 +197,7 @@
 }
 .main-content .album .play-count {
     position: absolute;
-    bottom: 0;
+    bottom: 3px;
     left: 0;
     right: 0;
     padding-left: 22px;
@@ -204,7 +210,7 @@
     font-size: 12px;
 }
 .main-content .album .play-count:hover {
-    cursor: none;
+    cursor: auto;
 }
 .main-content .album-decorate .border-one,
 .main-content .album-decorate .border-two,
@@ -212,8 +218,8 @@
     position: absolute;
     border: 0.5px solid #dedede;
     width: 144px;
-    height: 150px;
-    z-index: -100;
+    height: 146px;
+    z-index: 100;
 }
 .main-content .album-decorate .border-one {
     top: 23px;
@@ -232,9 +238,9 @@
     position: absolute;
     top: 23px;
     left: 23px;
-    width: 138px;
-    height: 112px;
-    background-color: rgba(255, 255, 255, 0.24);
+    width: 145px;
+    height: 117px;
+    background-color: rgba(255, 255, 255, 0.25);
     z-index: 5000;
 }
 .main-content .album-decorate .mask:hover {

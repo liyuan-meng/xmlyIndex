@@ -452,6 +452,23 @@
                 this.querySelector("ul").style.display = "none";
             });
         }
+        //点击展开，显示下方内容
+        function slideUpDown () {
+            var flags = 1;
+            document.querySelector("#slide-up-down").addEventListener("click", function (ev) {
+                if(flags === 1) {
+                    this.classList.remove("up-icon");
+                    this.classList.add("down-icon");
+                    flags = 0;
+                    document.querySelector("#entry").style.display = "block";
+                } else {
+                    this.classList.add("up-icon");
+                    this.classList.remove("down-icon");
+                    flags = 1;
+                    document.querySelector("#entry").style.display = "none";
+                }
+            })
+        }
         //左侧筛选菜单控制逻辑
         function controlLeftMenu () {
             //清除小标签的样式
@@ -504,6 +521,7 @@
         controlSearch ();
         addEventListeners(array);
         controlLeftMenu();
+        slideUpDown ();
     }
     //初始化右侧内容区
     function getContent () {
@@ -535,15 +553,15 @@
             var str = '<li class="pre">上一页</li>';
             for(var i = 0; i < totalPage; i++) {
                 if (i+1 === 1) {
-                    str += '<li class="page'+(i+1)+'page-num active">'+(i+1)+'</li>';
+                    str += '<li class="page'+(i+1)+' page-num active">'+(i+1)+'</li>';
                 } else if (i+1 < 8) {
-                    str += '<li class="page'+(i+1)+'page-num">'+(i+1)+'</li>';
+                    str += '<li class="page'+(i+1)+' page-num">'+(i+1)+'</li>';
                 } else if (i+1 === 8) {
                     str += '<li class="omit">......</li>';
                 } else if(i+1 > 8 && i+1 < totalPage-1) {
                     str += "";
                 } else {
-                    str += '<li class="page'+(i+1)+'page-num">'+(i+1)+'</li>';
+                    str += '<li class="page'+(i+1)+' page-num">'+(i+1)+'</li>';
                 }
             }
             str += '<li class="next">下一页</li>';
@@ -552,15 +570,7 @@
         showPage(100);
     }
     //页码控制逻辑
-    function controlPage (pageNum) {
-        document.querySelector(".page"+pageNum).classList.add("active");
-        if (pageNum === 1) {
-            document.querySelector("#page .pre").style.display = "none";
-        }
-        if(pageNum < 8) {
-
-        }
-    }
+    function controlPage (currentPage) { }
     function init () {
         getMenu ();
         getContent ();
